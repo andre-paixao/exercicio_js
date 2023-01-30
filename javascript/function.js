@@ -14,9 +14,11 @@
     paciente.exercicios = parseInt(document.getElementById("exercicios").value);
     paciente.estudo = parseInt(document.getElementById("estudo").value);
     paciente.fisico = parseInt(document.getElementById("fisico").value);
-    if (typeof(paciente.altura) == 'string') { paciente.altura = parseFloat(paciente.altura.replace(',', '.'));}     
+    if (typeof(paciente.altura) == 'string') { paciente.altura = parseFloat(paciente.altura.replace(',', '.'));} 
+    if (paciente.altura > 10) {paciente.altura = (paciente.altura / 100);}    
     paciente.imc = (paciente.peso / (paciente.altura * paciente.altura)).toFixed(2) ; 
     paciente.pts_saude = (paciente.alimentacao + paciente.exercicios); 
+    
     DoIT();}
 
 
