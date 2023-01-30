@@ -1,27 +1,29 @@
-window.onload = function() {
 
-    window.alert('Olá eu me chamo André_bot e este é um formulario de boas praticas, vamos começar?');
+    
 
     var paciente = {};
-    paciente.nome = window.prompt('Qual o seu nome?');
-    paciente.peso = window.prompt('Qual o seu peso em kg?');
-    paciente.altura = window.prompt('Qual a sua altura em metros?');
-    paciente.idade = parseInt(window.prompt('Qual a sua idade?'));
-    paciente.alimentacao = parseInt(window.prompt('De 0 a 100 quão saudavel é sua alimentação?'));
-    paciente.exercicios = parseInt(window.prompt( 'De 0 a 100 qual nivel de pratica de exercicios fisicos diarios?'));
-    paciente.estudo = parseInt(window.prompt(' Quantos minutos voce estuda por dia?'));
-    paciente.fisico = parseInt(window.prompt("De 0 a 100 como voce considera seu condicionamento fisico?"));
+    function GetInfos() {
+        event.preventDefault();
+            
+           
+    paciente.nome = document.getElementById("nome").value;
+    paciente.peso = document.getElementById("peso").value;
+    paciente.altura = document.getElementById("altura").value;
+    paciente.idade = parseInt(document.getElementById("idade").value);
+    paciente.alimentacao = parseInt(document.getElementById("alimentacao").value);
+    paciente.exercicios = parseInt(document.getElementById("exercicios").value);
+    paciente.estudo = parseInt(document.getElementById("estudo").value);
+    paciente.fisico = parseInt(document.getElementById("fisico").value);
+    if (typeof(paciente.altura) == 'string') { paciente.altura = parseFloat(paciente.altura.replace(',', '.'));}     
+    paciente.imc = (paciente.peso / (paciente.altura * paciente.altura)).toFixed(2) ; 
+    paciente.pts_saude = (paciente.alimentacao + paciente.exercicios); 
+    DoIT();}
 
-    if (typeof(paciente.altura) == 'string') { paciente.altura = parseFloat(paciente.altura.replace(',', '.'));}
-    
-    window.alert('Olá ' +paciente.nome +' Obrigado por responder, já estamos calculando seu indice de desenvolvimento pessoal.');
 
-    paciente.imc = (paciente.peso / (paciente.altura * paciente.altura)).toFixed(2) ;
 
-    
 
-    var pts_saude = (paciente.alimentacao + paciente.exercicios); // habitos saudaveis 0 - 200
-    
+
+    function DoIT() {
     if (paciente.idade <= 25) {
         var futuro_15 = '..';
         if (paciente.estudo < 10) {futuro_15 = 'futuro incerto pela frente, foque nos estudos pois isso mudará a sua vida!';}
@@ -29,19 +31,19 @@ window.onload = function() {
         if (paciente.estudo >= 30 && paciente.estudo <90) {futuro_15 = 'futuro promissor pela frente, voce está no caminho certo, nunca pare de estudar, e se dedicar em aprender pois o conhecimento muda o mundo, muda o seu mundo!';}
         if (paciente.estudo >= 90) {futuro_15 = 'futuro brilhante pela frente, continue se dedicando nos estudos, e nunca desista de chegar tão longe quanto voce sonhe em chegar, os estudos te levará onde ninguem chegou!';}
         
-        window.alert('Você está na flor da idade e tem um ' + futuro_15);
+        
         var saude_15 = '..';
         var fisico_15 = '..';
 
-        if (pts_saude < 50) {saude_15 = 'precisam melhorar e muito, se voce não se cuidar poderá ter problemas de saúde futuramente ';
+        if (paciente.pts_saude < 50) {saude_15 = 'precisam melhorar e muito, se voce não se cuidar poderá ter problemas de saúde futuramente ';
                              if (paciente.alimentacao > paciente.exercicios) {saude_15 = saude_15 + 'e principalmente levando uma vida sedentaria.';}}
 
-        if (pts_saude >= 50 && pts_saude <100) {saude_15 = 'precisam melhorar, saúde fisica também se reflete em boa saúde mental';
+        if (paciente.pts_saude >= 50 && paciente.pts_saude <100) {saude_15 = 'precisam melhorar, saúde fisica também se reflete em boa saúde mental';
                              if (paciente.alimentacao > paciente.exercicios) {saude_15 = saude_15 + ', exercicios fisicos melhoram sua qualidade de vida e nao deve ser deixados de lado.';}else{saude_15 = saude_15 + ', e boa alimentação fortalece o teu corpo para encarar todos os desafios da vida.';}}
 
-        if (pts_saude >= 100 && pts_saude <150) {saude_15 = 'são bons, mas podem ser melhorados, uma boa vida não é nada se não for 100% aproveitada'
+        if (paciente.pts_saude >= 100 && paciente.pts_saude <150) {saude_15 = 'são bons, mas podem ser melhorados, uma boa vida não é nada se não for 100% aproveitada'
                              if (paciente.alimentacao > paciente.exercicios) {saude_15 = saude_15 + ', exercicios fisicos melhora sua disposição para isso.';}else{saude_15 = saude_15 + ', e uma boa alimentação fortalece o teu corpo para encarar todos os desafios da vida.';}}
-        if (pts_saude >= 150) {saude_15 = 'são excelentes, continue com boa alimentação e pratique exercicios fisicos para poder aproveitar bem a vida';}
+        if (paciente.pts_saude >= 150) {saude_15 = 'são excelentes, continue com boa alimentação e pratique exercicios fisicos para poder aproveitar bem a vida';}
 
         if (paciente.imc <= 18.5) {paciente.resultado = 'abaixo do peso ideal, uma boa alimentação + exercicios físicos podem dar exelentes resultados'; 
                                    if (paciente.fisico < 20) {paciente.resultado = paciente.resultado + ', não espere por atitudes que só voce pode tomar, se não está bem então faça algo pra mudar.';}
@@ -69,10 +71,12 @@ window.onload = function() {
                                    if (paciente.fisico >=75) {paciente.resultado = paciente.resultado + ', mas tudo isso so depende de voce';}}
         
         
-         
-        window.alert('Os teus hábitos ' + saude_15);
-        window.alert ("O seu indice IMC é de " +paciente.imc + " e isso mostra que você está " + paciente.resultado);
-        window.alert ('Obrigado por participar desse quiz, até a proxima.');
+    var mensagem = 'Você está na flor da idade e tem um ' + futuro_15 + "\n \n";
+        mensagem += 'Os teus hábitos ' + saude_15 + "\n \n";
+        mensagem += "O seu indice IMC é de " +paciente.imc + " e isso mostra que você está " + paciente.resultado + "\n \n";
+        mensagem += 'Obrigado por participar desse quiz, até a proxima.';
+        document.getElementById("textR").value = mensagem ;
+
 
 
 
@@ -91,19 +95,19 @@ window.onload = function() {
         if (paciente.estudo >= 30 && paciente.estudo <90) {futuro_35 = 'futuro promissor pela frente, voce está no caminho certo, nunca pare de estudar, e se dedicar em aprender pois o conhecimento muda o mundo, muda o seu mundo!';}
         if (paciente.estudo >= 90) {futuro_35 = 'futuro brilhante pela frente, continue se dedicando nos estudos, e nunca desista de chegar tão longe quanto voce sonhe em chegar, os estudos te levará onde ninguem chegou!';}
         
-        window.alert('Você esta na fase madura da vida e tem um  ' + futuro_35);
+        
         var saude_35 = '..';
         var fisico_35 = '..';
 
-        if (pts_saude < 50) {saude_35 = 'precisam melhorar e muito, se voce não se cuidar poderá ter problemas de saúde futuramente ';
+        if (paciente.pts_saude < 50) {saude_35 = 'precisam melhorar e muito, se voce não se cuidar poderá ter problemas de saúde futuramente ';
                              if (paciente.alimentacao > paciente.exercicios) {saude_35 = saude_35 + 'e principalmente levando uma vida sedentaria.';}}
 
-        if (pts_saude >= 50 && pts_saude <100) {saude_35 = 'precisam melhorar, saúde fisica também se reflete em boa saúde mental';
+        if (paciente.pts_saude >= 50 && paciente.pts_saude <100) {saude_35 = 'precisam melhorar, saúde fisica também se reflete em boa saúde mental';
                              if (paciente.alimentacao > paciente.exercicios) {saude_35 = saude_35 + ', exercicios fisicos melhoram sua qualidade de vida e nao deve ser deixados de lado.';}else{saude_35 = saude_35 + ', e boa alimentação fortalece o teu corpo para encarar todos os desafios da vida.';}}
 
-        if (pts_saude >= 100 && pts_saude <150) {saude_35 = 'são bons, mas podem ser melhorados, uma boa vida não é nada se não for 100% aproveitada'
+        if (paciente.pts_saude >= 100 && paciente.pts_saude <150) {saude_35 = 'são bons, mas podem ser melhorados, uma boa vida não é nada se não for 100% aproveitada'
                              if (paciente.alimentacao > paciente.exercicios) {saude_35 = saude_35 + ', exercicios fisicos melhora sua disposição para isso.';}else{saude_35 = saude_35 + ', e uma boa alimentação fortalece o teu corpo para encarar todos os desafios da vida.';}}
-        if (pts_saude >= 150) {saude_35 = 'são excelentes, continue com boa alimentação e pratique exercicios fisicos para poder aproveitar bem a vida';}
+        if (paciente.pts_saude >= 150) {saude_35 = 'são excelentes, continue com boa alimentação e pratique exercicios fisicos para poder aproveitar bem a vida';}
 
         if (paciente.imc <= 18.5) {paciente.resultado = 'abaixo do peso ideal, uma boa alimentação + exercicios físicos podem dar exelentes resultados'; 
                                    if (paciente.fisico < 20) {paciente.resultado = paciente.resultado + ', não espere por atitudes que só voce pode tomar, se não está bem então faça algo pra mudar.';}
@@ -130,11 +134,12 @@ window.onload = function() {
                                    if (paciente.fisico >=50 && paciente.fisico <75) {paciente.resultado = paciente.resultado + ', eu nao deixaria de praticar exercicios se eu fosse voce';}
                                    if (paciente.fisico >=75) {paciente.resultado = paciente.resultado + ', mas tudo isso so depende de voce';}}
         
+        var mensagem = 'Você esta na fase madura da vida e tem um  ' + futuro_35 + "\n \n";
+        mensagem += 'Os teus hábitos ' + saude_35 + "\n \n";
+        mensagem += "O seu indice IMC é de " +paciente.imc + " e isso mostra que você está " + paciente.resultado + "\n \n";
+        mensagem += 'Obrigado por participar desse quiz, até a proxima.';
+        document.getElementById("textR").value = mensagem ;
         
-         
-        window.alert('Os teus hábitos ' + saude_35);
-        window.alert ("O seu indice IMC é de " +paciente.imc + " e isso mostra que você está " + paciente.resultado);
-        window.alert ('Obrigado por participar desse quiz, até a proxima.');
 
 
     }
@@ -145,19 +150,19 @@ window.onload = function() {
         if (paciente.estudo >= 30 && paciente.estudo <90) {futuro_40 = 'futuro promissor pela frente, voce está no caminho certo, nunca pare de estudar, e se dedicar em aprender pois o conhecimento muda o mundo, muda o seu mundo!';}
         if (paciente.estudo >= 90) {futuro_40 = 'futuro brilhante pela frente, continue se dedicando nos estudos, e nunca desista de chegar tão longe quanto voce sonhe em chegar, os estudos te levará onde ninguem chegou!';}
         
-        window.alert('Você ja tem bastante experiencia de vida e ' + futuro_40);
+        
         var saude_40 = '..';
         var fisico_40 = '..';
 
-        if (pts_saude < 50) {saude_40 = 'precisam melhorar e muito, se voce não se cuidar poderá ter problemas de saúde futuramente ';
+        if (paciente.pts_saude < 50) {saude_40 = 'precisam melhorar e muito, se voce não se cuidar poderá ter problemas de saúde futuramente ';
                              if (paciente.alimentacao > paciente.exercicios) {saude_40 = saude_40 + 'e principalmente levando uma vida sedentaria.';}}
 
-        if (pts_saude >= 50 && pts_saude <100) {saude_40 = 'precisam melhorar, saúde fisica também se reflete em boa saúde mental';
+        if (paciente.pts_saude >= 50 && paciente.pts_saude <100) {saude_40 = 'precisam melhorar, saúde fisica também se reflete em boa saúde mental';
                              if (paciente.alimentacao > paciente.exercicios) {saude_40 = saude_40 + ', exercicios fisicos melhoram sua qualidade de vida e nao deve ser deixados de lado.';}else{saude_40 = saude_40 + ', e boa alimentação fortalece o teu corpo para encarar todos os desafios da vida.';}}
 
-        if (pts_saude >= 100 && pts_saude <150) {saude_40 = 'são bons, mas podem ser melhorados, uma boa vida não é nada se não for 100% aproveitada'
+        if (paciente.pts_saude >= 100 && paciente.pts_saude <150) {saude_40 = 'são bons, mas podem ser melhorados, uma boa vida não é nada se não for 100% aproveitada'
                              if (paciente.alimentacao > paciente.exercicios) {saude_40 = saude_40 + ', exercicios fisicos melhora sua disposição para isso.';}else{saude_40 = saude_40 + ', e uma boa alimentação fortalece o teu corpo para encarar todos os desafios da vida.';}}
-        if (pts_saude >= 150) {saude_40 = 'são excelentes, continue com boa alimentação e pratique exercicios fisicos para poder aproveitar bem a vida';}
+        if (paciente.pts_saude >= 150) {saude_40 = 'são excelentes, continue com boa alimentação e pratique exercicios fisicos para poder aproveitar bem a vida';}
 
         if (paciente.imc <= 18.5) {paciente.resultado = 'abaixo do peso ideal, uma boa alimentação + exercicios físicos podem dar exelentes resultados'; 
                                    if (paciente.fisico < 20) {paciente.resultado = paciente.resultado + ', não espere por atitudes que só voce pode tomar, se não está bem então faça algo pra mudar.';}
@@ -184,11 +189,12 @@ window.onload = function() {
                                    if (paciente.fisico >=50 && paciente.fisico <75) {paciente.resultado = paciente.resultado + ', eu nao deixaria de praticar exercicios se eu fosse voce';}
                                    if (paciente.fisico >=75) {paciente.resultado = paciente.resultado + ', mas tudo isso so depende de voce';}}
         
-        
-         
-        window.alert('Os teus hábitos ' + saude_40);
-        window.alert ("O seu indice IMC é de " +paciente.imc + " e isso mostra que você está " + paciente.resultado);
-        window.alert ('Obrigado por participar desse quiz, até a proxima.');
+        var mensagem = 'Você ja tem bastante experiencia de vida e ' + futuro_40 + "\n \n";
+        mensagem += 'Os teus hábitos ' + saude_40 + "\n \n";
+        mensagem += "O seu indice IMC é de " +paciente.imc + " e isso mostra que você está " + paciente.resultado + "\n \n";
+        mensagem += 'Obrigado por participar desse quiz, até a proxima.';
+        document.getElementById("textR").value = mensagem ;
+            
     }
 
 
@@ -199,19 +205,19 @@ window.onload = function() {
         if (paciente.estudo >= 30 && paciente.estudo <90) {futuro_45 = 'futuro parece reservar mais pra voce, está no caminho certo, nunca pare de estudar, e se dedicar em aprender pois o conhecimento muda o mundo, muda o seu mundo!';}
         if (paciente.estudo >= 90) {futuro_45 = 'futuro brilhante pela frente, continue se dedicando nos estudos, e nunca desista de chegar tão longe quanto voce sonhe em chegar, os estudos te levará onde ninguem chegou!';}
         
-        window.alert('Daqui pra frente as coisas ficam mais dificeis e o ' + futuro_45);
+        
         var saude_45 = '..';
         var fisico_45 = '..';
 
-        if (pts_saude < 50) {saude_45 = 'precisam melhorar e muito, se voce não se cuidar poderá ter problemas de saúde futuramente ';
+        if (paciente.pts_saude < 50) {saude_45 = 'precisam melhorar e muito, se voce não se cuidar poderá ter problemas de saúde futuramente ';
                              if (paciente.alimentacao > paciente.exercicios) {saude_45 = saude_45 + 'e principalmente levando uma vida sedentaria.';}}
 
-        if (pts_saude >= 50 && pts_saude <100) {saude_45 = 'precisam melhorar, saúde fisica também se reflete em boa saúde mental';
+        if (paciente.pts_saude >= 50 && paciente.pts_saude <100) {saude_45 = 'precisam melhorar, saúde fisica também se reflete em boa saúde mental';
                              if (paciente.alimentacao > paciente.exercicios) {saude_45 = saude_45 + ', exercicios fisicos melhoram sua qualidade de vida e nao deve ser deixados de lado.';}else{saude_45 = saude_45 + ', e boa alimentação fortalece o teu corpo para encarar todos os desafios da vida.';}}
 
-        if (pts_saude >= 100 && pts_saude <150) {saude_45 = 'são bons, mas podem ser melhorados, uma boa vida não é nada se não for 100% aproveitada'
+        if (paciente.pts_saude >= 100 && paciente.pts_saude <150) {saude_45 = 'são bons, mas podem ser melhorados, uma boa vida não é nada se não for 100% aproveitada'
                              if (paciente.alimentacao > paciente.exercicios) {saude_45 = saude_45 + ', exercicios fisicos melhora sua disposição para isso.';}else{saude_45 = saude_45 + ', e uma boa alimentação fortalece o teu corpo para encarar todos os desafios da vida.';}}
-        if (pts_saude >= 150) {saude_45 = 'são excelentes, continue com boa alimentação e pratique exercicios fisicos para poder aproveitar bem a vida';}
+        if (paciente.pts_saude >= 150) {saude_45 = 'são excelentes, continue com boa alimentação e pratique exercicios fisicos para poder aproveitar bem a vida';}
 
         if (paciente.imc <= 18.5) {paciente.resultado = 'abaixo do peso ideal, uma boa alimentação + exercicios físicos podem dar exelentes resultados'; 
                                    if (paciente.fisico < 20) {paciente.resultado = paciente.resultado + ', não espere por atitudes que só voce pode tomar, se não está bem então faça algo pra mudar.';}
@@ -238,15 +244,16 @@ window.onload = function() {
                                    if (paciente.fisico >=50 && paciente.fisico <75) {paciente.resultado = paciente.resultado + ', eu nao deixaria de praticar exercicios se eu fosse voce';}
                                    if (paciente.fisico >=75) {paciente.resultado = paciente.resultado + ', mas tudo isso so depende de voce';}}
         
-        
-         
-        window.alert('Os teus hábitos ' + saude_45);
-        window.alert ("O seu indice IMC é de " +paciente.imc + " e isso mostra que você está " + paciente.resultado);
-        window.alert ('Obrigado por participar desse quiz, até a proxima.');
+        var mensagem = 'Daqui pra frente as coisas ficam mais dificeis e o ' + futuro_45 + "\n \n";
+        mensagem += 'Os teus hábitos ' + saude_45 + "\n \n";
+        mensagem += "O seu indice IMC é de " +paciente.imc + " e isso mostra que você está " + paciente.resultado + "\n \n";
+        mensagem += 'Obrigado por participar desse quiz, até a proxima.';
+        document.getElementById("textR").value = mensagem ;
+                                 
     }
 
 
-
+}
    
 
    /*
@@ -269,5 +276,3 @@ window.onload = function() {
 
 
 
-
-}

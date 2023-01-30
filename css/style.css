@@ -1,25 +1,13 @@
-/* =============== RELEVANT CODE =============== */
+
 .panel {
-  margin: 0 auto;
-  padding: 20px;
+  width: 70%;
+  
+  margin: 10px auto;
+  padding: 15px;
   border-radius: 3px;
   box-shadow: 2px 2px 5px;
-  background: conic-gradient(from var(--b) at var(--xy), var(--c0) var(--a), var(--c1) 0% 50%, var(--c2) 0% calc(180deg + var(--a)), var(--c3) 0%);
-}
-.panel:last-child {
-  grid-column: 1/span 2;
-}
-h1 {
+  background: #094b5e;
   
-  background-color: rgba(93, 207, 192, 0.582);
-  padding:1%;
-  text-align: center;
-}
-
-/* =============== LAYOUT & PRETTiFYING CODE =============== */
-/* (some pretty clever shit in there too) */
-html {
-  overflow-x: hidden;
 }
 
 body {
@@ -27,59 +15,87 @@ body {
   grid-template-rows: 1fr max-content;
   margin: 0;
   min-width: 160px;
-  height: 100vh;
-  background: #363636;
-  font: 1.25em/1.5  purisa, comic sans ms, cursive;
-}
-@media (max-width: 480px) {
-  body {
-    font-size: 0.875em;
-  }
+  background: #01242e;
 }
 
-.grid {
-  box-sizing: border-box;
-  display: grid;
-  grid-template: minmax(65vmin, 65%) minmax(2em, 1fr)/minmax(2em, 1fr) minmax(65vmin, 65%);
-  grid-gap: 2vmin;
-  padding: 2vmin;
-}
 
-p {
-  margin: 0;
-  padding: 0.5em 2vmin;
-  color: #eee;
+form{
+  font-family: Garamond;
   text-align: center;
+  height:100%;
+  width:100%}
+
+form fieldset{
+  background: linear-gradient(140deg, rgb(248, 249, 250) 0%, rgb(211, 242, 250) 100%); 
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
 }
 
-a {
-  --hlight: 0;
-  --not-hlight: calc(1 - var(--hlight));
-  --active: 0;
-  --not-active: calc(1 - var(--active));
-  position: relative;
-  display: inline-block;
-  padding: 0 0.125em;
-  color: gold;
-  text-decoration: none;
+form fieldset div input{
+  margin-bottom: 10px;
+  margin-top:4px
 }
-a::before {
-  position: absolute;
-  top: 1px;
-  right: 0;
-  bottom: 1px;
-  left: 0;
-  transform-origin: 50% 100%;
-  transform: scaley(calc(var(--hlight) + var(--not-hlight)*.075));
-  background: currentcolor;
-  mix-blend-mode: difference;
-  transition: transform 0.35s cubic-bezier(calc(var(--hlight)*.42), 0, calc(var(--not-hlight)*.58), 1);
-  filter: hue-rotate(calc(var(--active)*-35deg));
-  content: "";
+
+form fieldset input[type="text"]{
+  width: 50%;
+  height: 25px;
+  border-radius: 5px;
+  padding: 5px;
 }
-a:hover, a:focus {
-  --hlight: 1 ;
+
+form fieldset input[type="text"]:hover {
+  background-color: antiquewhite;
 }
-a:active {
-  --active: 1 ;
+
+form fieldset input[type="text"]:active{
+  background-color: rgb(247, 208, 158);
 }
+
+
+
+h1{
+  margin-top: 5px;
+  text-shadow: 1px 3px 5px #0d0229;
+  
+}
+
+textarea {
+  padding:10px;
+  border-radius: 5px;
+  background-color: bisque;
+width:80%;
+height:300px;
+font-size: 18px;
+font-family: Serif;
+}
+
+.botoes{
+  font-size: 15px;;
+  padding:5px;
+  border: 2px solid #094b5e;
+  border-radius: 4px;
+}
+
+.botoes:hover {
+  background-color: rgb(66, 153, 153);
+  cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1120px) {
+ .panel {
+         width:90%;
+ }
+ textarea {height:400px;}
+}
+
+@media screen and (max-width: 750px) {
+  form fieldset input[type="text"]{
+    width: 70%;
+  }
+  textarea {height: 500px;}
+ }

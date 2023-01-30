@@ -11,11 +11,33 @@
 
 
     <body>
-        <div class="panel" style="--xy: 48% 33%; 
-        --b: 55deg; --a: 98deg; 
-        --c0: #be28b9; --c1: #51239f; --c2: #510062; --c3: #be008d"> <h1> Calculo de indice desenvolvimento pessoal </h1> </div>
+        <div class="panel" > 
+            <form id="formulario" >  <fieldset>  
+                               <h1> Calculadora Estilo de vida </h1>
+                               <div> <label for="nome">Qual o seu nome?</label> <br><input type="text" required id="nome" >                                                  </div>
+                               <div> <label for="peso">Qual o seu peso?</label> <br><input type="text" required id="peso" >                                                  </div>
+                               <div> <label for="altura">Qual a sua altura?</label> <br><input type="text" required id="altura" >                                              </div>
+                               <div> <label for="idade">Qual a sua idade?</label> <br><input type="text" required id="idade" >                                                </div>
+                               <div> <label for="estudo">Quantos minutos estuda por dia? </label> <br><input type="text" required  id="estudo" >                               </div>
+                               <div> <label for="alimentacao">Quão saudavel é a sua alimentação?</label> <br> <input type="range" min="0" max="100" value="0" id="alimentacao">               </div>
+                               <div> <label for="exercicios">Qual sua prática de exercicios diarios?</label><br> <input type="range" min="0" max="100" value="0" id="exercicios" >          </div>
+                               <div> <label for="fisico">Como está o seu condicionamento fisico?</label><br> <input type="range" min="0" max="100" value="0" id="fisico" >              </div>
+                               <div> <button class="botoes" id="botao" onclick="GetInfos() ">Calcular </button> <input class="botoes" type="reset"> </div>
 
-        <p> Exercicio de javascript </p>
+
+
+                               
+                               <textarea id="textR"> </textarea>
+                              
+            
+        
+        
+          </fieldset> </form> </div>
+
+         
+        
+
+        
       
 
     
